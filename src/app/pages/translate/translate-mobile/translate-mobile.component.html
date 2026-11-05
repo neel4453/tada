@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border floating-header">
+  <div class="nav-inner">
+    <app-language-selectors />
+  </div>
+  <p class="research-preview">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    The latest Sign models are currently in research preview and are not available to the public.
+  </p>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @if (spokenToSigned) {
+    <app-signed-language-output />
+  } @else {
+    <app-video [displayControls]="false" [displayFps]="false" />
+  }
+</ion-content>
+
+<!-- Footer with input and submit button -->
+<ion-footer [class.signed-to-spoken]="!spokenToSigned">
+  @if (spokenToSigned) {
+    <app-spoken-language-input [isMobile]="true" />
+  } @else {
+    <app-signed-language-input />
+  }
+</ion-footer>

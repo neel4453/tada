@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border floating-header">
+  <nav class="nav-inner">
+    <app-logo />
+    <div class="nav-links">
+      @for (page of pages; track page.key) {
+        <a [routerLink]="page.route" queryParamsHandling="preserve" class="nav-link">
+          {{ 'landing.' + page.key + '.title' | transloco }}
+        </a>
+      }
+      <a href="https://rylo.com/sign" target="_blank" class="nav-link">
+        {{ 'landing.about.title' | transloco }}
+      </a>
+    </div>
+  </nav>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <app-drop-pose-file>
+      <div id="translation-card">
+        <div id="card-header">
+          <app-language-selectors />
+          <app-sign-writing-toggle />
+        </div>
+
+        <div id="content">
+          @if (spokenToSigned) {
+            <!-- Spoken to sign requires a text input and video output -->
+            <app-spoken-to-signed />
+          } @else {
+            <!-- Sign to spoken requires a video input and text output -->
+            <app-signed-to-spoken />
+          }
+        </div>
+      </div>
+    </app-drop-pose-file>
+
+    <app-send-feedback />
+
+    <div class="disclaimer research-preview">
+      <ion-icon name="information-circle-outline" class="disclaimer-icon"></ion-icon>
+      <span class="disclaimer-text">
+        The latest Sign models are currently in research preview and are not available to the public. By using the sign
+        Translate tool, you agree to our
+        <a routerLink="/legal/privacy" target="_blank" class="disclaimer-link">Privacy Policy</a>
+        and
+        <a routerLink="/legal/terms" target="_blank" class="disclaimer-link">Terms of Use</a>.
+      </span>
+    </div>
+  </div>
+  <app-landing-footer />
+</ion-content>
