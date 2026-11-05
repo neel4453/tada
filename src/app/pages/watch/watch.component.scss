@@ -1,12 +1,14 @@
+@use '../../../theme/tnt' as tnt;
+
 :host {
   display: block;
   min-height: 100vh;
-  background: #fafafa;
-  color: #1a1a1a;
+  background-color: #faf5f2;
+  color: #191412;
 
   @media (prefers-color-scheme: dark) {
-    background: #0a0a0a;
-    color: #eee;
+    background-color: #191412;
+    color: #faf5f2;
   }
 }
 
@@ -23,6 +25,7 @@
   display: flex;
   justify-content: center;
   padding: 16px 0;
+  @include tnt.enter(tnt.$tnt-duration-slow);
 
   app-logo {
     display: block;
@@ -47,21 +50,22 @@
   font-size: 0.8rem;
   line-height: 1.4;
   text-align: center;
-  background: rgba(255, 139, 43, 0.08);
-  border: 1px solid rgba(255, 139, 43, 0.3);
-  border-radius: 12px;
+  @include tnt.glass-pill(0.6, 12px);
+  border-color: rgba(var(--ion-color-primary-rgb), 0.3);
+  color: var(--ion-text-color);
 
   ion-icon {
     font-size: 18px;
-    color: #ff8b2b;
+    color: var(--ion-color-primary);
     flex-shrink: 0;
   }
 }
 
 .video-container {
   width: 100%;
-  border-radius: 16px;
+  border-radius: tnt.$tnt-radius-md;
   overflow: hidden;
+  box-shadow: var(--tnt-shadow-lg);
 
   app-signed-language-output {
     display: block;
@@ -70,9 +74,19 @@
 }
 
 .empty-state {
-  padding: 48px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 24px;
   text-align: center;
-  color: #999;
+  @include tnt.glass-panel(0.6, 14px);
+  border-radius: tnt.$tnt-radius-md;
+  color: var(--ion-color-medium);
+
+  p {
+    margin: 0;
+  }
 }
 
 .watch-text {
@@ -95,26 +109,34 @@
 .cta-button {
   display: block;
   padding: 14px 24px;
-  border-radius: 12px;
+  border-radius: tnt.$tnt-radius-sm;
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition:
+    transform tnt.$tnt-duration-fast tnt.$tnt-ease-spring,
+    box-shadow tnt.$tnt-duration-base tnt.$tnt-ease-standard,
+    filter tnt.$tnt-duration-base tnt.$tnt-ease-standard;
 
   &:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   &.primary {
-    background: #ff8b2b;
-    color: white;
+    @include tnt.brand-gradient();
+    color: #ffffff;
+    box-shadow: var(--tnt-shadow-brand);
   }
 
   &.secondary {
     background: transparent;
-    color: #ff8b2b;
-    border: 1.5px solid #ff8b2b;
+    color: var(--ion-color-primary);
+    border: 1.5px solid rgba(var(--ion-color-primary-rgb), 0.45);
   }
 }
 
@@ -123,13 +145,10 @@
   align-items: center;
   gap: 10px;
   padding: 10px 12px;
-  background: #f0ebe8;
-  border-radius: 12px;
+  @include tnt.glass-panel(0.72, 14px);
+  border-radius: tnt.$tnt-radius-sm;
   margin-bottom: 8px;
-
-  @media (prefers-color-scheme: dark) {
-    background: #2a2220;
-  }
+  box-shadow: var(--tnt-shadow-sm);
 }
 
 .app-banner-icon {
@@ -137,10 +156,6 @@
   height: 36px;
   border-radius: 8px;
   flex-shrink: 0;
-
-  @media (prefers-color-scheme: dark) {
-    filter: invert(1) hue-rotate(180deg);
-  }
 }
 
 .app-banner-text {
@@ -162,12 +177,17 @@
 .app-banner-button {
   padding: 6px 16px;
   border-radius: 20px;
-  background: #ff8b2b;
-  color: white;
+  background: var(--ion-color-primary);
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
   flex-shrink: 0;
+  transition: filter tnt.$tnt-duration-fast tnt.$tnt-ease-standard;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
 }
 
 .app-banner-close {
@@ -179,6 +199,11 @@
   padding: 4px;
   line-height: 1;
   color: inherit;
+  transition: opacity tnt.$tnt-duration-fast tnt.$tnt-ease-standard;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .watch-footer {
@@ -188,7 +213,8 @@
   opacity: 0.5;
 
   a {
-    color: #ff8b2b;
+    color: var(--ion-color-primary);
     text-decoration: none;
+    font-weight: 600;
   }
 }

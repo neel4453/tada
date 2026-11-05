@@ -11,6 +11,7 @@ import {
 import {addIcons} from 'ionicons';
 import {alertCircleOutline, code, language} from 'ionicons/icons';
 import {NtkmeButtonModule} from '@ctrl/ngx-github-buttons';
+import {REPOSITORY_I18N_URL, REPOSITORY_ISSUES_URL, REPOSITORY_URL} from '../../../core/constants';
 
 @Component({
   selector: 'app-contribute',
@@ -38,7 +39,7 @@ export class ContributeComponent {
         'By contributing to the development of the app, you can help improve the quality of the code, fix any existing bugs, and even implement new features and models. You can find the source code on GitHub and start contributing today. Every line of code counts!',
       action: {
         text: 'View on GitHub',
-        url: 'https://github.com/sign/translate',
+        url: REPOSITORY_URL,
       },
     },
     {
@@ -50,7 +51,7 @@ export class ContributeComponent {
         'By contributing to the translation of the app, you can help make the app more accessible to users who speak different languages. You can find the language JSON file on GitHub and start translating today. Every word counts!',
       action: {
         text: 'View on GitHub',
-        url: 'https://github.com/sign/translate/tree/master/src/assets/i18n',
+        url: REPOSITORY_I18N_URL,
       },
     },
     {
@@ -62,7 +63,7 @@ export class ContributeComponent {
         'By providing feedback, you can help us improve the app and make it better for everyone. Whether you have a suggestion for a new feature, or you found a bug, your feedback is valuable to us. You can reach us on GitHub or through our feedback form. Every voice counts!',
       action: {
         text: 'Give Feedback',
-        url: 'https://github.com/sign/translate/issues',
+        url: REPOSITORY_ISSUES_URL,
       },
     },
   ];

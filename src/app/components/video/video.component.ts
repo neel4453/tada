@@ -41,6 +41,9 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   private signWritingService = inject(SignWritingService);
   private elementRef = inject(ElementRef);
 
+  /** True when a real DOM is available (browser, not prerendering/SSR). */
+  protected readonly isBrowser = 'document' in globalThis;
+
   readonly videoEl = viewChild<ElementRef<HTMLVideoElement>>('video');
   readonly canvasEl = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
   readonly statsEl = viewChild<ElementRef>('stats');
@@ -55,8 +58,10 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   videoEnded = false;
 
-  fpsStats = new Stats();
-  signingStats = new Stats();
+  // Created lazily in `setStats()` — `stats.js` touches `document` in its
+  // constructor, so instantiating it here would break server-side rendering.
+  fpsStats: Stats | null = null;
+  signingStats: Stats | null = null;
 
   constructor() {
     super();
@@ -69,6 +74,12 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // Everything below needs a real DOM (canvas 2d, ResizeObserver, media
+    // devices). During server-side prerendering there is nothing to render.
+    if (!this.isBrowser) {
+      return;
+    }
+
     const videoEl = this.videoEl();
     this.setCamera();
     this.setStats();
@@ -172,8 +183,8 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
         map(state => state.pose),
         filter(Boolean),
         tap(() => {
-          this.fpsStats.end(); // End previous frame time
-          this.fpsStats.begin(); // Start new frame time
+          this.fpsStats?.end(); // End previous frame time
+          this.fpsStats?.begin(); // Start new frame time
         }),
         takeUntil(this.ngUnsubscribe)
       )
@@ -224,6 +235,11 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   }
 
   setStats(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.fpsStats = new Stats();
     this.fpsStats.showPanel(0);
     this.fpsStats.dom.style.position = 'absolute';
     this.statsEl().nativeElement.appendChild(this.fpsStats.dom);
@@ -235,6 +251,7 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
     // Sign detection panel
     const signingPanel = new Stats.Panel('Signing', '#ff8', '#221');
+    this.signingStats = new Stats();
     this.signingStats.dom.innerHTML = '';
     this.signingStats.addPanel(signingPanel);
     this.signingStats.showPanel(0);
@@ -261,7 +278,9 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
         map(settings => settings.detectSign),
         distinctUntilChanged(),
         tap(detectSign => {
-          this.signingStats.dom.style.display = detectSign ? 'block' : 'none';
+          if (this.signingStats) {
+            this.signingStats.dom.style.display = detectSign ? 'block' : 'none';
+          }
         }),
         takeUntil(this.ngUnsubscribe)
       )

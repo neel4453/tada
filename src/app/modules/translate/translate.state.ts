@@ -379,19 +379,19 @@ export class TranslateState implements NgxsOnInit {
   async shareSignedLanguageVideo({getState}: StateContext<TranslateStateModel>): Promise<void> {
     const state = getState();
     const watchUrl = TranslateState.buildShareUrl(state);
-    const shareText = `Translated with Rylo Translate\n${watchUrl}`;
+    const shareText = `Translated with TNT\n${watchUrl}`;
 
     const blob = this.frameCache.blob;
     if (!blob) return;
     const ext = blob.type.split('/').pop();
-    const file = new File([blob], 'rylo-translate.' + ext, {type: blob.type});
+    const file = new File([blob], 'tnt-translation.' + ext, {type: blob.type});
 
     const files: File[] = [file];
 
     if ('canShare' in navigator && (navigator as any).canShare({files})) {
       await navigator.share({files, text: shareText} as ShareData);
     } else if ('share' in navigator) {
-      await navigator.share({text: shareText, title: 'Rylo Translate', url: watchUrl});
+      await navigator.share({text: shareText, title: 'TNT', url: watchUrl});
     }
   }
 

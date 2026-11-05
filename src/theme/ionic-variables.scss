@@ -2,11 +2,11 @@
 // http://ionicframework.com/docs/theming/
 // https://ionicframework.com/docs/theming/color-generator
 
-/** Ionic CSS Variables — Rylo Brand **/
+/** Ionic CSS Variables — TNT Brand **/
 :root {
-  --ion-font-family: 'Inter Tight', sans-serif;
+  --ion-font-family: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  /** primary — Rylo Orange **/
+  /** primary — TNT Orange **/
   --ion-color-primary: #ff882b;
   --ion-color-primary-rgb: 255, 136, 43;
   --ion-color-primary-contrast: #ffffff;
@@ -15,7 +15,7 @@
   --ion-color-primary-tint: #ff9f4b;
   --ion-color-primary-accessible-text: #b45500;
 
-  /** secondary — Rylo Sky **/
+  /** secondary — TNT Sky **/
   --ion-color-secondary: #a9c2d7;
   --ion-color-secondary-rgb: 169, 194, 215;
   --ion-color-secondary-contrast: #191412;
@@ -91,7 +91,7 @@
 
 @media (prefers-color-scheme: dark) {
   /*
-   * Dark Colors — Rylo Dusk palette
+   * Dark Colors — TNT Dusk palette
    * -------------------------------------------
    */
 

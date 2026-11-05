@@ -1,4 +1,6 @@
 @use '../../../../theme/floating-nav' as nav;
+@use '../../../../theme/tnt' as tnt;
+@use '../../../../theme/breakpoints' as breakpoints;
 
 :host ::ng-deep {
   ion-header.floating-header {
@@ -16,4 +18,57 @@
   font-weight: 600;
   font-size: 16px;
   color: var(--ion-text-color);
+}
+
+ion-content {
+  --background: transparent;
+}
+
+// Settings groups read as a stack of floating glass cards.
+ion-list {
+  background: transparent;
+  padding: 8px 0 24px;
+}
+
+ion-list-header {
+  padding-inline-start: 16px;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ion-color-medium);
+}
+
+ion-item {
+  --background: var(--tnt-surface);
+  --border-color: var(--tnt-border);
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 8px;
+  --min-height: 56px;
+  margin: 0 8px 2px;
+  border-radius: tnt.$tnt-radius-sm;
+  font-weight: 500;
+  transition:
+    transform tnt.$tnt-duration-fast tnt.$tnt-ease-standard,
+    background-color tnt.$tnt-duration-fast tnt.$tnt-ease-standard,
+    box-shadow tnt.$tnt-duration-fast tnt.$tnt-ease-standard;
+
+  &::part(native) {
+    border-radius: tnt.$tnt-radius-sm;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--tnt-surface-strong);
+      box-shadow: var(--tnt-shadow-sm);
+      transform: translateX(2px);
+    }
+  }
+
+  ion-icon {
+    color: var(--ion-color-primary);
+    font-size: 20px;
+  }
 }

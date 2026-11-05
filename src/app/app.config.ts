@@ -12,6 +12,7 @@ import {NgxsModuleOptions, provideStore} from '@ngxs/store';
 import {SettingsState} from './modules/settings/settings.state';
 import {environment} from '../environments/environment';
 import {provideServiceWorker} from '@angular/service-worker';
+import {PageMetadataService} from './core/services/page-metadata.service';
 import {isSafari} from './core/constants';
 import {provideAnimations} from '@angular/platform-browser/animations';
 
@@ -49,6 +50,9 @@ export const appConfig: ApplicationConfig = {
     }),
 
     NavigatorService,
+
+    // Browser tab title + meta description per route
+    PageMetadataService,
 
     // HTTP Requests
     provideHttpClient(withFetch(), withInterceptors([recaptchaInterceptor])),

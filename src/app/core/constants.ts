@@ -16,5 +16,16 @@ export const isChrome = /(Chrome|Chromium)/i.test(nav('userAgent'));
 // Safari, mobile Chrome, not including desktop Chrome
 export const isWebKit = /AppleWebKit/i.test(nav('userAgent')) && (!isChrome || (isIOS && isChrome));
 
-export const APPLE_APP_STORE_ID = 'id1514154600';
-export const ANDROID_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.talknagish.app';
+/** Display name of the product, used for document titles and share messages. */
+export const APP_NAME = 'TNT';
+
+/** Tagline shown next to the product name where a longer description is needed. */
+export const APP_TAGLINE = 'Sign language translation';
+
+/**
+ * Public home of the project. Support, contribution and feedback links all point
+ * here so that there is exactly one place to update.
+ */
+export const REPOSITORY_URL = 'https://github.com/neel4453/tada';
+export const REPOSITORY_ISSUES_URL = `${REPOSITORY_URL}/issues`;
+export const REPOSITORY_I18N_URL = `${REPOSITORY_URL}/tree/main/src/assets/i18n`;

@@ -2,6 +2,7 @@
 @use '../../../../theme/md3-tokens' as md3;
 @use '../../../../theme/animations' as anim;
 @use '../../../../theme/floating-nav' as nav;
+@use '../../../../theme/tnt' as tnt;
 
 :host ::ng-deep {
   ion-header.floating-header {
@@ -30,10 +31,7 @@
 
 .container {
   flex: 1;
-}
 
-// Container
-.container {
   @include anim.animate-fade-in(md3.$md3-duration-medium2);
   display: flex;
   flex-direction: column;
@@ -47,80 +45,42 @@
     flex: 0 0 auto;
   }
 
-  // Translation card with Material Design 3 styling
+  // The translation surface: layered glass with an animated brand hairline.
   #translation-card {
-    background: linear-gradient(135deg, #faf5f2 0%, #eee7e1 100%);
+    position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--tnt-surface-strong), var(--tnt-surface-sunken));
     box-shadow:
-      md3.$md3-elevation-1,
-      0 0 0 1px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.1);
+      var(--tnt-shadow-md),
+      0 0 0 1px rgba(var(--ion-color-primary-rgb), 0.1);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
     transition:
       box-shadow md3.$md3-duration-medium2 md3.$md3-easing-standard,
       transform md3.$md3-duration-medium2 md3.$md3-easing-standard;
     @include anim.animate-scale-in(md3.$md3-duration-medium2, 0.1s);
-    position: relative;
-    overflow: hidden;
 
-    // Animated top gradient bar
     &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(
-        90deg,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.9) 0%,
-        rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.7) 25%,
-        rgba(var(--ion-color-tertiary-rgb, 255, 193, 7), 0.9) 50%,
-        rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.7) 75%,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.9) 100%
-      );
-      background-size: 200% 100%;
-      animation: gradientShift 3s ease-in-out infinite;
+      @include tnt.gradient-hairline(3px);
       z-index: 10;
-      box-shadow: 0 2px 8px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.3);
-    }
-
-    // Radial gradient glow effect on hover
-    &::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(
-        circle,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.15) 0%,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.05) 30%,
-        transparent 70%
-      );
-      opacity: 0;
-      transition: opacity md3.$md3-duration-medium4 md3.$md3-easing-standard;
-      pointer-events: none;
     }
 
     @media (prefers-color-scheme: dark) {
-      background: linear-gradient(135deg, #191412 0%, #312623 100%);
+      background: linear-gradient(135deg, rgba(41, 33, 30, 0.92), rgba(25, 20, 18, 0.92));
     }
 
     @media #{breakpoints.$breakpoint-gt-xs} {
       box-shadow:
-        md3.$md3-elevation-2,
-        0 0 0 1px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.15);
+        var(--tnt-shadow-lg),
+        0 0 0 1px rgba(var(--ion-color-primary-rgb), 0.15);
 
       &:hover {
         box-shadow:
-          md3.$md3-elevation-3,
-          0 0 24px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.3);
+          var(--tnt-shadow-xl),
+          0 0 24px rgba(var(--ion-color-primary-rgb), 0.3);
         transform: translateY(-4px);
-
-        &::after {
-          opacity: 1;
-        }
       }
     }
 
@@ -131,9 +91,9 @@
     #card-header {
       display: flex;
       align-items: center;
-      border-bottom: 1px solid var(--app-divider-color);
       position: relative;
       z-index: 2;
+      border-bottom: 1px solid var(--app-divider-color);
 
       app-language-selectors {
         flex: 1;
@@ -148,47 +108,25 @@
   }
 }
 
-ntkme-github-button {
-  margin: 0 8px;
-}
-
-#version {
-  cursor: help;
-  font-family: monospace;
-}
-
-// Privacy disclaimer with gradient background
+// Inline informational notices. Deliberately non-interactive: no hover states,
+// so the notice never competes with the content it sits next to.
 .disclaimer {
   display: flex;
   justify-content: center;
   gap: 10px;
+  max-width: 640px;
+  margin: 16px auto 0;
+  padding: 10px 14px;
   font-size: 13px;
   text-align: center;
-  margin: 16px auto 0;
-  max-width: max-content;
-  padding: 10px 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.08) 0%,
-    rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.05) 100%
-  );
+  background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.08), rgba(var(--ion-color-secondary-rgb), 0.05));
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.15);
   border-radius: md3.$md3-radius;
-  border: 1px solid rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.15);
-  transition: all md3.$md3-duration-short4 md3.$md3-easing-emphasized;
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.12) 0%,
-      rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.08) 100%
-    );
-    border-color: rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.25);
-  }
 
   &-icon {
-    font-size: 18px;
-    color: rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.8);
     flex-shrink: 0;
+    font-size: 18px;
+    color: rgba(var(--ion-color-primary-rgb), 0.8);
   }
 
   &-text {
@@ -201,36 +139,11 @@ ntkme-github-button {
 
   &-link {
     color: var(--ion-color-primary);
-    text-decoration: none;
     font-weight: 500;
-    transition: opacity md3.$md3-duration-short4 md3.$md3-easing-standard;
+    text-decoration: none;
 
     &:hover {
-      opacity: 0.8;
       text-decoration: underline;
     }
-  }
-}
-
-.disclaimer.research-preview {
-  max-width: 640px;
-  background: linear-gradient(
-    135deg,
-    rgba(var(--ion-color-primary-rgb), 0.1) 0%,
-    rgba(var(--ion-color-primary-rgb), 0.04) 100%
-  );
-  border-color: rgba(var(--ion-color-primary-rgb), 0.25);
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(var(--ion-color-primary-rgb), 0.14) 0%,
-      rgba(var(--ion-color-primary-rgb), 0.06) 100%
-    );
-    border-color: rgba(var(--ion-color-primary-rgb), 0.35);
-  }
-
-  .disclaimer-icon {
-    color: rgba(var(--ion-color-primary-rgb), 0.9);
   }
 }

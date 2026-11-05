@@ -5,25 +5,25 @@ import {defineConfig} from 'vitepress';
 
 export default withMermaid(
   defineConfig({
-    title: 'Documentation',
-    description: 'Rylo Translate Documentation and Blog',
-    // Must match base-path.json basePath + 'docs/' — the app is served under /sign/translate/.
-    base: '/sign/translate/docs/',
+    title: 'TNT Documentation',
+    description: 'TNT documentation and blog',
+    // Must match base-path.json basePath + 'docs/' — the app is served under /tnt/.
+    base: '/tnt/docs/',
     lastUpdated: true,
     sitemap: {
-      hostname: 'https://rylo.com/sign/translate/docs/',
+      hostname: 'https://neel4453.github.io/tnt/docs/',
     },
     themeConfig: {
       search: {
         provider: 'local',
       },
       editLink: {
-        pattern: 'https://github.com/sign/translate/tree/master/docs/:path',
+        pattern: 'https://github.com/neel4453/tada/tree/main/docs/:path',
       },
       logo: {
         light: '/logo-light.svg',
         dark: '/logo-dark.svg',
-        alt: 'Rylo Translate Logo',
+        alt: 'TNT Logo',
       },
       nav: [
         {text: 'Docs', link: '/docs/introduction/getting-started'},
@@ -141,23 +141,8 @@ export default withMermaid(
         ],
       },
 
-      socialLinks: [
-        {icon: 'github', link: 'https://github.com/sign/translate'},
-        {icon: 'x', link: 'https://x.com/signmt_'},
-        {icon: 'linkedin', link: 'https://www.linkedin.com/company/rylohq'},
-      ],
+      socialLinks: [{icon: 'github', link: 'https://github.com/neel4453/tada'}],
     },
-    head: [
-      ['script', {async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-4VVY23YXMF'}],
-      [
-        'script',
-        {},
-        `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4VVY23YXMF');`,
-      ],
-    ],
     markdown: {
       config: md => {
         md.use(footnote);

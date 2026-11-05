@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rylo.com/sign/translate/sitemap-index.xml
+Sitemap: https://neel4453.github.io/tnt/sitemap-index.xml

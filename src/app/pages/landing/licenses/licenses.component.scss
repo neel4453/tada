@@ -1,3 +1,5 @@
+@use '../../../../theme/tnt' as tnt;
+
 :host {
   max-width: 960px;
   display: block;
@@ -13,4 +15,53 @@ mat-tree-node {
   }
 
   margin-inline-end: 40px;
+}
+
+// ---------------------------------------------------------------------------
+// Loading / error / summary states
+// ---------------------------------------------------------------------------
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  @include tnt.glass-panel(0.6, 14px);
+  border-radius: tnt.$tnt-radius-md;
+  box-shadow: var(--tnt-shadow-sm);
+
+  p {
+    margin: 0;
+    color: var(--ion-color-medium);
+    line-height: 1.6;
+  }
+
+  ion-icon {
+    font-size: 32px;
+    color: var(--ion-color-primary);
+  }
+
+  .state__hint {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+}
+
+.state--loading {
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 3px solid rgba(var(--ion-color-primary-rgb), 0.2);
+    border-top-color: var(--ion-color-primary);
+    animation: tnt-spin 900ms linear infinite;
+  }
+}
+
+.licenses-summary {
+  padding: 0 16px;
+  font-size: 13px;
+  color: var(--ion-color-medium);
 }

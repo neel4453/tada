@@ -1,21 +1,23 @@
+@use './tnt' as tnt;
+
+// Floating glass navigation shared by the translator, landing and settings
+// screens. Kept as mixins so each page composes the same surface, radii and
+// motion instead of re-declaring them.
+
 @mixin glass-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 8px 8px 16px;
-  height: 64px;
+  gap: 16px;
   box-sizing: border-box;
-  border-radius: 16px;
-
-  background: rgba(250, 245, 242, 0.65);
-  border: 1px solid rgba(25, 20, 18, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
+  height: 64px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid var(--tnt-border);
+  border-radius: tnt.$tnt-radius-md;
+  background: var(--tnt-surface);
+  box-shadow: var(--tnt-shadow-md);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
 }
 
 @mixin floating-header {
@@ -27,8 +29,8 @@
   }
 }
 
-// Aligns page content with the floating navbar's logo: glass-container has 16px left
-// padding, so 16px left padding here puts text flush with the wordmark above.
+// Aligns page content with the floating navbar's logo: glass-container has 16px
+// left padding, so 16px left padding here puts text flush with the wordmark above.
 @mixin nav-aligned-container {
   display: block;
   max-width: 1200px;
@@ -38,15 +40,41 @@
 }
 
 @mixin nav-link {
-  padding: 8px 16px;
+  position: relative;
+  padding: 8px 14px;
+  border-radius: tnt.$tnt-radius-xs;
   font-weight: 600;
   font-size: 14px;
+  line-height: 1;
   color: var(--ion-text-color);
   text-decoration: none;
-  line-height: 1;
+  transition:
+    background-color tnt.$tnt-duration-fast tnt.$tnt-ease-standard,
+    color tnt.$tnt-duration-fast tnt.$tnt-ease-standard;
+
+  // Underline that grows from the centre on hover.
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 14px;
+    bottom: 2px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ion-color-primary);
+    transform: scaleX(0);
+    transition: transform tnt.$tnt-duration-base tnt.$tnt-ease-emphasized;
+  }
 
   &:hover {
-    opacity: 0.7;
+    background: rgba(25, 20, 18, 0.05);
+
+    @media (prefers-color-scheme: dark) {
+      background: rgba(250, 245, 242, 0.07);
+    }
+
+    &::after {
+      transform: scaleX(1);
+    }
   }
 }
 
@@ -54,25 +82,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 24px;
   gap: 8px;
-  height: 48px;
-  background: var(--ion-color-primary);
-  box-shadow:
-    0px 8px 24px rgba(25, 20, 18, 0.15),
-    inset 0px 0px 8px rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
+  height: 44px;
+  padding: 8px 22px;
+  border-radius: tnt.$tnt-radius-sm;
+  background-image: linear-gradient(
+    135deg,
+    var(--ion-color-primary-tint),
+    var(--ion-color-primary) 45%,
+    var(--ion-color-tertiary)
+  );
+  box-shadow: var(--tnt-shadow-brand);
   font-weight: 600;
-  font-size: 16px;
-  color: #191412;
-  text-decoration: none;
+  font-size: 15px;
   line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform tnt.$tnt-duration-fast tnt.$tnt-ease-spring,
+    filter tnt.$tnt-duration-base tnt.$tnt-ease-standard;
 
   ion-icon {
     font-size: 18px;
   }
 
   &:hover {
-    filter: brightness(1.05);
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }

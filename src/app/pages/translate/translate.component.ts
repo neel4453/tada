@@ -2,11 +2,9 @@ import {Component, inject, OnInit} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {SetSetting} from '../../modules/settings/settings.actions';
 import {fromEvent} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import {BaseComponent} from '../../components/base/base.component';
-import {takeUntil, tap} from 'rxjs/operators';
-import {TranslocoService} from '@jsverse/transloco';
 import {TranslationService} from '../../modules/translate/translate.service';
-import {Meta, Title} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {TranslateMobileComponent} from './translate-mobile/translate-mobile.component';
 import {TranslateDesktopComponent} from './translate-desktop/translate-desktop.component';
@@ -20,11 +18,8 @@ import {loadSignWritingPreference} from './signwriting/sign-writing-preference';
 })
 export class TranslateComponent extends BaseComponent implements OnInit {
   private store = inject(Store);
-  private transloco = inject(TranslocoService);
   translation = inject(TranslationService);
   private mediaMatcher = inject(MediaMatcher);
-  private meta = inject(Meta);
-  private title = inject(Title);
 
   isMobile: MediaQueryList;
 
@@ -44,22 +39,8 @@ export class TranslateComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.transloco.events$
-      .pipe(
-        tap(() => {
-          this.title.setTitle(`${this.transloco.translate('translate.title')} | Rylo Translate`);
-          this.meta.updateTag(
-            {
-              name: 'description',
-              content: this.transloco.translate('translate.description'),
-            },
-            'name=description'
-          );
-        }),
-        takeUntil(this.ngUnsubscribe)
-      )
-      .subscribe();
-
+    // The browser tab title and the description meta tag are maintained centrally
+    // by PageMetadataService, so every route gets a translated title.
     this.playVideos();
   }
 
@@ -70,22 +51,19 @@ export class TranslateComponent extends BaseComponent implements OnInit {
 
     // Autoplay videos don't play before page interaction, or after re-opening PWA without refresh
     fromEvent(window, 'click')
-      .pipe(
-        tap(async () => {
-          const videos = Array.from(document.getElementsByTagName('video'));
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(async () => {
+        const videos = Array.from(document.getElementsByTagName('video'));
 
-          for (const video of videos) {
-            if (video.autoplay && video.paused) {
-              try {
-                await video.play();
-              } catch (e) {
-                console.error(e);
-              }
+        for (const video of videos) {
+          if (video.autoplay && video.paused) {
+            try {
+              await video.play();
+            } catch (e) {
+              console.error(e);
             }
           }
-        }),
-        takeUntil(this.ngUnsubscribe)
-      )
-      .subscribe();
+        }
+      });
   }
 }

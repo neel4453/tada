@@ -6,7 +6,6 @@ import {IonContent, IonHeader, IonIcon} from '@ionic/angular/standalone';
 import {LanguageSelectorsComponent} from '../language-selectors/language-selectors.component';
 import {SendFeedbackComponent} from '../send-feedback/send-feedback.component';
 import {TranslocoPipe} from '@jsverse/transloco';
-import {NtkmeButtonModule} from '@ctrl/ngx-github-buttons';
 import {SpokenToSignedComponent} from '../spoken-to-signed/spoken-to-signed.component';
 import {SignedToSpokenComponent} from '../signed-to-spoken/signed-to-spoken.component';
 import {SignWritingToggleComponent} from '../signwriting/sign-writing-toggle.component';
@@ -15,6 +14,7 @@ import {addIcons} from 'ionicons';
 import {informationCircleOutline} from 'ionicons/icons';
 import {RouterLink} from '@angular/router';
 import {LogoComponent} from '../../../components/logo/logo.component';
+import {REPOSITORY_URL} from '../../../core/constants';
 
 import {LandingFooterComponent} from '../../landing/landing-footer/landing-footer.component';
 
@@ -35,7 +35,6 @@ import {LandingFooterComponent} from '../../landing/landing-footer/landing-foote
     DropPoseFileComponent,
     RouterLink,
     LogoComponent,
-
     LandingFooterComponent,
   ],
 })
@@ -47,6 +46,8 @@ export class TranslateDesktopComponent extends BaseComponent implements OnInit {
     {key: 'home', route: '/'},
     {key: 'contribute', route: '/about/contribute'},
   ];
+
+  repositoryUrl = REPOSITORY_URL;
 
   spokenToSigned: boolean;
 

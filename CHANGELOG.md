@@ -1,89 +1,81 @@
 # Changelog
 
-This file is used to list important changes made over time to `sign/translate`.
+This file lists the important changes made to **TNT** over time.
+Entries inherited from the upstream `sign/translate` project are preserved in
+[`.changelog-archive.md`](.changelog-archive.md).
 
-## Unreleased
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### 0.0.4: Nagish Migration (2025/10/22)
+## [Unreleased]
 
-- removed the bottom `ion-tab-bar` since the settings page does not provide useful functionality
-- send feedback, and inquiry are unified as mail to sign@nagish.com
-- changed text copy on the about page (removed team, changed FAQ)
-- modified headers, to include more page links
+### 1.0.0 — TNT rebrand (2026/11/05)
 
-### 0.0.3
+A complete product refinement of the inherited `sign/translate` codebase: rebranded as **TNT**, given a unified
+design system, and hardened for production use. No product functionality was removed.
 
-#### Documentation
+#### Rebranding
 
-- **wiki**: redo wiki to be more transparent about the project's progress
+- **branding**: product renamed to **TNT** across the app title, browser tab, PWA manifest, OpenSearch description,
+  navigation, settings, share messages, downloaded filenames, notification copy and README/docs
+- **logo**: new TNT mark and wordmark (`src/assets/icons/logo.svg`, `logo-dark.svg`, `favicon.svg`,
+  `src/app/components/logo`, `docs/public/logo-*.svg`); the canvas watermark in
+  `src/app/core/helpers/watermark.ts` now draws the TNT letterforms
+- **removed**: creator-specific promotional links (rylo.com, Rylo social accounts, third-party store banners) and
+  the third-party smart app banner
+- **preserved**: `LICENSE.md` verbatim, including copyright notices and the commercial-licence contact; the
+  OpenPGP-signed `src/assets/.well-known/security.txt` byte-for-byte
+- **added**: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) documenting inherited code, dependency licences,
+  bundled model weights, external services and trademark status
+- **package**: `@sign/translate` → `tnt`, Angular project `sign-translate` → `tnt`, output `dist/sign-translate` →
+  `dist/tnt`
 
-#### Features
+#### Design system
 
-- **api**: add text-normalization API with appCheck support
-- **spoken-to-signed**: add language detection suggestion "Translate from: \_\_\_"
-- **spoken-to-signed**: add text edit suggestions "Did you mean: \_\_\_"
-- **core**: upgraded to angular 17, and all relevant dependencies
-- **skeleton-viewer**: add VideoEncoder video rendering for consistent and controllable rendering
+- **theme**: new `src/theme/_tnt.scss` with glassmorphism (`glass-panel`, `glass-pill`), neumorphism
+  (`neu-raised`, `neu-inset`), layered shadow tokens, brand gradients, focus rings, skeleton shimmers and motion
+  keyframes
+- **shell**: ambient drifting background orbs, skip-to-content link, consistent focus rings, brand-tinted text
+  selection, `prefers-reduced-motion` support
+- **navigation**: floating glass navbar with animated gradient underline on hover and a spring-eased CTA
+- **surfaces**: translation card, settings groups, cards, notices and the watch page all use the shared tokens
+- **states**: redesigned 404 page, licence loading/error/empty states, polished loading and empty states
+- **components**: buttons, list items, segment controls and cards share one radius/elevation/motion treatment
 
-#### Style
+#### Functional improvements
 
-- **signed-to-spoken**: integrate a new interface for mobile devices
+- **routing**: the previously orphaned `/settings` route is now reachable from the translator navigation
+- **feedback**: feedback and issue links point at the project's GitHub issue tracker instead of a stale mailbox
+- **i18n**: new `landing.community`, `app.*` and `legal.licenses.*` keys; licence summary uses ICU pluralisation
+- **a11y**: `main` landmarks with `id="main-content"` on every full-screen page, `rel="noopener"` on external links,
+  ARIA labels on icon-only actions, focus rings on the logo and nav
+- **privacy**: `PRIVACY.md` rewritten for TNT; analytics and reCAPTCHA ship **disabled** by default so a fresh
+  deployment sends no data to third parties
+- **watch page**: repaired the broken `assets/brand/logo.svg` image reference and removed dead third-party store
+  links
 
-#### Fixes
+#### Reliability & SSR fixes
 
-- **normalization**: cancel normalization requests when user changes text
-- **skeleton-viewer**: video recordings don't lag when user hides the page
-- **mobile**: lock screen to portrait orientation
+- **video**: `stats.js` is now instantiated lazily, only in the browser, and `ngAfterViewInit` short-circuits on the
+  server — fixes `ReferenceError: document is not defined` during prerendering
+- **video state**: `SetVideo` no longer probes video metadata on the server
+- **licences page**: fetch is browser-only, failures surface a recoverable error state instead of an unhandled
+  `HttpErrorResponse`
+- **compile**: removed unused component imports flagged by `NG8113`, replaced an `any`-typed tree accessor with a
+  proper type guard
 
-## Released
+#### Codebase cleanup
 
-### 0.0.2 (2023/10/20)
+- **dependencies**: replaced unreachable `git://` and `git+ssh://` GitHub URLs with `https://`, unblocking
+  `npm install` in restricted networks
+- **dead code**: removed the smart app banner machinery and the unused `ANDROID_PLAY_STORE_URL` constant
+- **consistency**: `REPOSITORY_URL`, `REPOSITORY_ISSUES_URL` and `REPOSITORY_I18N_URL` in
+  `src/app/core/constants.ts` are now the single source of truth for every outbound project link
+- **docs**: fixed the `hhttps://` typo in a citation URL, corrected the docs edit-link branch to `main`, removed the
+  hard-coded third-party Google Analytics snippet from the VitePress config
 
-#### Documentation
+#### Build & tooling
 
-- **readme**: redo README to be more developer friendly
-
-#### Features
-
-- **core**: split app into modules to decrease chunk sizes
-- **github**: add github star button
-- **settings**: moved settings to a tabs page instead of a dialog
-- **human**: mux human videos instead of screen recording
-- **build**: move CI to using bun, and speed up builds
-- **translation**: change signed languages from countries to language codes
-
-#### Style
-
-- **core**: migrated app from `angular/material` to `ionic`
-- **ios/safari**: add iOS style for iOS devices / Safari
-- **translation**: integrate a new interface for mobile devices
-- **human**: position human in center of screen
-
-#### Fixes
-
-- **avatar**: fix avatar rotation names
-- **tests**: fix flaky tests, caused by race conditions
-- **sharing**: removed sharing from the desktop web when unsupported
-- **settings**: navigation back button text matches the main page title
-- **signed-to-spoken**: fix upload videos component
-- **avatars**: add missing tooltips
-
-### 0.0.1 (2023/03/13)
-
-#### Style
-
-- **settings**: dialog is fully black on mobile. No rounded corners
-
-#### Features
-
-- **language-selector**: group languages under initial letter
-- **material-icons**: add automatic update script
-
-#### Fixes
-
-- **install**: fix `npm install` on Windows using PowerShell
-- **sitemap**: utilise page alternates for different page languages
-
-### 0.0.0 (2023/02/13)
-
-Changes before these dates were not tracked in the changelog
+- Production build completes with **zero compiler warnings and zero prerender errors**
+- `tools/apply-base-path.js` now emits the `/tnt/` base path consistently across `robots.txt`,
+  `opensearch.xml`, `_base-path.scss` and the canonical URL

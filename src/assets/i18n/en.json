@@ -2,6 +2,7 @@
   "languages.spoken": "All",
   "countries.signed": "All",
   "to": "{{a}} → {{b}}",
+  "skipToContent": "Skip to main content",
   "keyboard": {
     "ctrl": "Ctrl",
     "shift": "Shift"
@@ -13,7 +14,7 @@
       "more": "More Languages",
       "detect": "Detect language"
     },
-    "description": "The sign language translation tool Sign.mt is now part of Rylo!",
+    "description": "Real-time translation between spoken and signed languages.",
     "input": {
       "webcam": "Webcam",
       "upload": "Upload",
@@ -61,13 +62,16 @@
       "legal": "Navigate to legal pages"
     },
     "about": {
-      "title": "About Us"
+      "title": "About"
     },
     "contribute": {
       "title": "Contribute"
     },
     "home": {
       "title": "Home"
+    },
+    "community": {
+      "title": "Community"
     }
   },
   "playground": {
@@ -107,7 +111,11 @@
       "title": "Privacy Policy"
     },
     "licenses": {
-      "title": "Software and Licenses"
+      "title": "Software and Licenses",
+      "loading": "Loading licence information…",
+      "error": "Licence information is unavailable",
+      "errorHint": "Run “npm run generate:licenses” to build assets/licenses.json, then reload.",
+      "summary": "{count, plural, =0 {No packages found} one {1 package} other {# packages}}"
     }
   },
   "404": {
@@ -208,5 +216,9 @@
       "avatar": "Avatar",
       "person": "Human"
     }
+  },
+  "app": {
+    "name": "TNT",
+    "tagline": "Real-time translation between spoken and signed languages"
   }
 }
