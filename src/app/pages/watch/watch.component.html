@@ -3,19 +3,19 @@
     <app-logo />
   </header>
 
-  @if (showAppBanner && isAndroid) {
+  @if (showAppBanner) {
     <div class="app-banner">
-      <img src="assets/brand/logo.svg" alt="Rylo" class="app-banner-icon" />
+      <img src="assets/icons/logo.svg" alt="" class="app-banner-icon" />
       <div class="app-banner-text">
-        <strong>Rylo</strong>
-        <span>Get the app for the best experience</span>
+        <strong>TNT</strong>
+        <span>Translate spoken and signed languages</span>
       </div>
-      <a [href]="androidStoreUrl" target="_blank" rel="noopener" class="app-banner-button">Open</a>
+      <a routerLink="/" class="app-banner-button">Open</a>
       <button class="app-banner-close" (click)="showAppBanner = false" aria-label="Dismiss">&times;</button>
     </div>
   }
 
-  <main class="watch-content">
+  <main class="watch-content" id="main-content">
     <p class="research-preview">
       <ion-icon name="information-circle-outline"></ion-icon>
       The latest Sign models are currently in research preview and are not available to the public.
@@ -36,12 +36,12 @@
     }
 
     <div class="cta-section">
-      <a routerLink="/" class="cta-button primary">Try Rylo Translate</a>
-      <a href="https://rylo.com" target="_blank" rel="noopener" class="cta-button secondary">Get Rylo</a>
+      <a routerLink="/" class="cta-button primary">Try TNT</a>
+      <a routerLink="/about/contribute" class="cta-button secondary">Help improve TNT</a>
     </div>
   </main>
 
   <footer class="watch-footer">
-    <p>Powered by <a href="https://rylo.com" target="_blank" rel="noopener">Rylo</a></p>
+    <p>Powered by <a routerLink="/">TNT</a></p>
   </footer>
 </div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sign-translate": {
+    "tnt": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": {
-              "base": "dist/sign-translate"
+              "base": "dist/tnt"
             },
             "index": "src/index.html",
             "polyfills": ["zone.js"],
@@ -96,7 +96,10 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": {"styles": {"inlineCritical": false}},
+              "optimization": {
+                "styles": {"inlineCritical": false},
+                "fonts": {"inline": false}
+              },
               "outputHashing": "all",
               "sourceMap": true,
               "namedChunks": true,
@@ -123,21 +126,24 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
-            "buildTarget": "sign-translate:build"
+            "buildTarget": "tnt:build",
+            "host": "0.0.0.0",
+            "port": 4200,
+            "allowedHosts": ["all"]
           },
           "configurations": {
             "production": {
-              "buildTarget": "sign-translate:build:production"
+              "buildTarget": "tnt:build:production"
             },
             "development": {
-              "buildTarget": "sign-translate:build:development"
+              "buildTarget": "tnt:build:development"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "sign-translate:build"
+            "buildTarget": "tnt:build"
           }
         },
         "test": {

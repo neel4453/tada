@@ -108,6 +108,12 @@ export class VideoState implements NgxsOnInit {
     patchState({error: null});
     this.stopVideo(context);
 
+    // Probing the video metadata needs a DOM. During server-side prerendering
+    // there is no media element available, so keep the previous state instead.
+    if (!('document' in globalThis)) {
+      return;
+    }
+
     const videoEl: HTMLVideoElement = document.createElement('video');
     videoEl.addEventListener('loadedmetadata', () => {
       const width = videoEl.videoWidth;

@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'Rylo Translate Docs'
+  name: 'TNT Docs'
   text: 'Documentation and Blog'
   tagline: 'A collection of resources on sign languages, deaf culture, and our technology.'
   actions:

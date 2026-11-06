@@ -1,8 +1,11 @@
 <footer>
   <div class="container">
     <div class="brand">
-      <a href="https://rylo.com" target="_blank"><h3>Rylo.com</h3></a>
-      <a href="mailto:research@rylo.com" target="_blank">research&#64;rylo.com</a>
+      <a routerLink="/" queryParamsHandling="preserve">
+        <h3>TNT</h3>
+      </a>
+      <p class="tagline">Sign language translation, in the browser.</p>
+      <a [href]="repositoryUrl" target="_blank" rel="noopener">Source on GitHub</a>
       <!-- Language selector is disabled until better support is added
       <br />
       <app-i18n-language-selector /> -->
@@ -22,11 +25,11 @@
     </div>
 
     <div class="social">
-      <h3>Find Us</h3>
+      <h3>{{ 'landing.community.title' | transloco }}</h3>
       <ul>
-        <li><a href="https://x.com/RyloHQ" target="_blank">Twitter (X)</a></li>
-        <li><a href="https://www.linkedin.com/company/rylohq" target="_blank">LinkedIn</a></li>
-        <li><a href="https://github.com/sign" target="_blank">GitHub</a></li>
+        <li><a [href]="repositoryUrl" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a [href]="issuesUrl" target="_blank" rel="noopener">Report an issue</a></li>
+        <li><a routerLink="/about/contribute" queryParamsHandling="preserve">Contribute</a></li>
       </ul>
     </div>
   </div>

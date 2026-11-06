@@ -7,14 +7,17 @@
           {{ 'landing.' + page.key + '.title' | transloco }}
         </a>
       }
-      <a href="https://rylo.com/sign" target="_blank" class="nav-link">
+      <a routerLink="/settings" queryParamsHandling="preserve" class="nav-link">
+        {{ 'settings.title' | transloco }}
+      </a>
+      <a [href]="repositoryUrl" target="_blank" rel="noopener" class="nav-link">
         {{ 'landing.about.title' | transloco }}
       </a>
     </div>
   </nav>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" id="main-content">
   <div class="container">
     <app-drop-pose-file>
       <div id="translation-card">
@@ -40,8 +43,8 @@
     <div class="disclaimer research-preview">
       <ion-icon name="information-circle-outline" class="disclaimer-icon"></ion-icon>
       <span class="disclaimer-text">
-        The latest Sign models are currently in research preview and are not available to the public. By using the sign
-        Translate tool, you agree to our
+        The latest Sign models are currently in research preview and are not available to the public. By using the TNT
+        translation tool, you agree to our
         <a routerLink="/legal/privacy" target="_blank" class="disclaimer-link">Privacy Policy</a>
         and
         <a routerLink="/legal/terms" target="_blank" class="disclaimer-link">Terms of Use</a>.

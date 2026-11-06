@@ -1,9 +1,11 @@
-# Privacy Policy for [Rylo Translate](https://rylo.com/sign/translate)
+# Privacy Policy for [TNT](https://neel4453.github.io/tnt/)
 
-Last Update: 21 October 2025
+Last Update: 5 November 2026
 
-This Privacy Policy describes how Nagish Inc. and our subsidiaries and affiliates (collectively, “Nagish”, “we”, “us”, or “our”) handle information in connection with our website located at [https://rylo.com/sign/translate](https://rylo.com/sign/translate) (collectively with any related websites and successor websites, the “Website”), and any other services that we own or control and which post or link to this Privacy Policy (collectively, the “Services”), and the rights and choices available to you with respect to your information.  
+This Privacy Policy describes how the operator of this deployment of TNT (collectively, “we”, “us”, or “our”) handles information in connection with our website located at [https://neel4453.github.io/tnt/](https://neel4453.github.io/tnt/) (collectively with any related websites and successor websites, the “Website”), and any other services that we own or control and which post or link to this Privacy Policy (collectively, the “Services”), and the rights and choices available to you with respect to your information.  
 This Privacy Notice is governed by our Terms of Service. Defined terms used herein and not otherwise defined have the meanings set forth in the Terms of Service.
+
+> TNT is an open-source project. If you run your own copy of the software, **you** are the data controller for your deployment and this policy applies only to the deployment you are actually using. Self-hosters should review the data flows described below and publish their own policy.
 
 > PLEASE READ THIS PRIVACY POLICY CAREFULLY TO UNDERSTAND HOW WE HANDLE YOUR PERSONAL INFORMATION.  
 > IF YOU DO NOT AGREE TO THIS PRIVACY POLICY, PLEASE DO NOT ACCESS THE WEBSITE OR USE OUR SERVICES.
@@ -12,7 +14,7 @@ This Privacy Notice is governed by our Terms of Service. Defined terms used here
 
 ## 1. Who We Are
 
-Nagish Inc. is the data controller responsible for any personal data processed in connection with the Website.
+The data controller responsible for any personal data processed in connection with the Website is the operator of this TNT deployment.
 
 Our guiding principle is data-minimization.  
 Whenever feasible, processing happens locally on your device, limiting the amount of information transmitted across the internet.  
@@ -29,6 +31,8 @@ These logs reside in Google Cloud Logs and Google BigQuery on encrypted storage 
 If you opt in through our cookie banner, we gather aggregated analytics such as page paths, browser type, device category, and language settings.  
 This data, processed through Google Analytics, helps us understand overall usage patterns and prioritise product improvements.  
 Declining or later withdrawing consent stops analytics collection immediately.
+
+Analytics is disabled unless the deployment sets a Google Analytics measurement id. Self-hosters who leave it unset collect no analytics data at all.
 
 Certain advanced features—specifically text normalization and vocalization—send your input to OpenAI’s ChatGPT API for processing.  
 These requests are covered by the [OpenAI Privacy Policy](https://openai.com/policies/privacy-policy).
@@ -61,7 +65,7 @@ Where data leaves the EEA—including transfers to the United States—we rely o
 
 You have the right to request access, rectification, erasure, restriction of processing, and portability of your personal data, as well as the right to object to certain processing activities.  
 Please note that because we anonymize request logs and remove direct identifiers, we may be unable to locate any data that can be linked back to you personally.  
-To exercise any of these rights, contact us at [research&#64;rylo.com](mailto:research@rylo.com).  
+To exercise any of these rights, contact the operator of the deployment you are using — for the deployment published from this repository, open an issue at [https://github.com/neel4453/tada/issues](https://github.com/neel4453/tada/issues).  
 You also have the right to lodge a complaint with your local supervisory authority.
 
 ---
@@ -69,4 +73,4 @@ You also have the right to lodge a complaint with your local supervisory authori
 ## 7. Updates to This Policy
 
 We update this Privacy Policy when our technology, legal obligations, or data-handling practices change.  
-The most recent version is always available at [Rylo Translate](https://rylo.com/sign/translate), and the “Last Update” date above reflects the date of the latest substantive revision.
+The most recent version is always available at [TNT](https://neel4453.github.io/tnt/), and the “Last Update” date above reflects the date of the latest substantive revision.

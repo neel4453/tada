@@ -7,7 +7,7 @@ import {ShareSignedLanguageVideo} from '../../../../modules/translate/translate.
 import {FrameCacheService} from '../../../../core/services/frame-cache.service';
 import {TranslateState, TranslateStateModel} from '../../../../modules/translate/translate.state';
 import {BaseComponent} from '../../../../components/base/base.component';
-import {IonButton, IonIcon, IonSpinner} from '@ionic/angular/standalone';
+import {IonButton, IonIcon} from '@ionic/angular/standalone';
 import {AvatarPoseViewerComponent} from '../../pose-viewers/avatar-pose-viewer/avatar-pose-viewer.component';
 import {SkeletonPoseViewerComponent} from '../../pose-viewers/skeleton-pose-viewer/skeleton-pose-viewer.component';
 import {HumanPoseViewerComponent} from '../../pose-viewers/human-pose-viewer/human-pose-viewer.component';
@@ -24,7 +24,6 @@ import {downloadOutline, linkOutline, shareOutline, shareSocialOutline} from 'io
   styleUrls: ['./signed-language-output.component.scss'],
   imports: [
     IonButton,
-    IonSpinner,
     AvatarPoseViewerComponent,
     SkeletonPoseViewerComponent,
     HumanPoseViewerComponent,

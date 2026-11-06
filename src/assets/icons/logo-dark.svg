@@ -1,4 +1,12 @@
-<svg width="139" height="152" viewBox="0 0 139 152" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M135.553 125.712C141.026 120.099 139.239 115.693 129.823 119.136C112.145 125.602 78.651 124.785 64.3354 110.47C43.318 89.4525 55.5959 42.0107 31.6433 42.0107C7.6907 42.0107 -21.3084 114.03 23.2275 141.875C65.3727 168.218 127.792 133.679 135.561 125.72L135.553 125.712Z" fill="#FF8B2B"/>
-<path d="M3.07486 25.903C-2.39835 31.5159 -0.610727 35.9224 8.80553 32.4796C26.4831 26.0133 59.977 26.8299 74.2927 41.1455C95.3101 62.1629 83.0321 109.605 106.985 109.605C130.937 109.605 159.937 37.585 115.401 9.74082C73.2554 -16.5953 10.8359 17.9433 3.07486 25.903Z" fill="#FF8B2B"/>
+<svg width="152" height="152" viewBox="0 0 152 152" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TNT">
+  <defs>
+    <linearGradient id="tntTileDark" x1="12" y1="4" x2="140" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFC38A" />
+      <stop offset="0.52" stop-color="#FF9D48" />
+      <stop offset="1" stop-color="#F07A20" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="144" height="144" rx="42" fill="url(#tntTileDark)" />
+  <path d="M42 66 H106 M74 66 V112" stroke="#191412" stroke-width="14" stroke-linecap="round" fill="none" />
+  <path d="M114 28 L119 37 L128 42 L119 47 L114 56 L109 47 L100 42 L109 37 Z" fill="#191412" opacity="0.9" />
 </svg>

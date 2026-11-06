@@ -1,3 +1,5 @@
+@use '../../../theme/tnt' as tnt;
+
 :host {
   display: flex;
   align-items: center;
@@ -15,24 +17,39 @@ a {
   gap: 0.2em;
   color: unset;
   text-decoration: none;
+  border-radius: tnt.$tnt-radius-xs;
+  @include tnt.focus-ring();
 }
 
 svg {
-  height: 1.3em;
+  height: 1.5em;
   width: auto;
   display: block;
+  overflow: visible;
+  transition: transform tnt.$tnt-duration-base tnt.$tnt-ease-spring;
+
+  .logo-wordmark {
+    transition: opacity tnt.$tnt-duration-base tnt.$tnt-ease-standard;
+  }
+}
+
+// A small, tactile press on the mark keeps the brand feel alive.
+a:hover svg {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .beta-chip {
   margin-left: 0.5em;
-  padding: 0.2em 0.55em;
+  padding: 0.25em 0.6em;
   font-size: 0.55em;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
-  color: #191412;
-  background: var(--ion-color-primary);
-  border-radius: 999px;
+  color: #ffffff;
+  @include tnt.brand-gradient();
+  border-radius: tnt.$tnt-radius-pill;
+  box-shadow: var(--tnt-shadow-brand);
   cursor: help;
+  white-space: nowrap;
 }

@@ -1,4 +1,4 @@
-# `sign`/docs
+# TNT documentation
 
 ## Contribute
 
@@ -7,8 +7,8 @@ You can edit files directly on GitHub ([Tutorial](https://docs.github.com/en/rep
 or clone the repository to get an instant preview using:
 
 ```bash
-git clone https://github.com/sign/translate.git
-cd translate/docs
+git clone https://github.com/neel4453/tada.git
+cd docs
 npm install
 npm run docs:dev
 ```

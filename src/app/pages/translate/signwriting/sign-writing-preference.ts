@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'rylo.translate.drawSignWriting';
+const STORAGE_KEY = 'tnt.drawSignWriting';
 
 export function loadSignWritingPreference(): boolean {
   if (!('window' in globalThis)) {

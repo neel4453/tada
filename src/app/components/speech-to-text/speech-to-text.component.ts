@@ -113,10 +113,24 @@ export class SpeechToTextComponent extends BaseComponent implements OnInit, OnCh
   }
 
   requestPermission() {
-    navigator.mediaDevices.getUserMedia({video: false, audio: true}).then(stream => {
-      stream.getTracks().forEach(track => track.stop());
-      this.supportError = null;
-    });
+    // Microphone also requires a secure context when not on localhost.
+    if ('isSecureContext' in globalThis && !globalThis.isSecureContext) {
+      const host = globalThis.location?.hostname ?? '';
+      const isLoopback = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+      if (!isLoopback) {
+        this.supportError = 'not-allowed';
+        return;
+      }
+    }
+    navigator.mediaDevices
+      .getUserMedia({video: false, audio: true})
+      .then(stream => {
+        stream.getTracks().forEach(track => track.stop());
+        this.supportError = null;
+      })
+      .catch(() => {
+        this.supportError = 'not-allowed';
+      });
   }
 
   start() {

@@ -1,9 +1,13 @@
-<ion-content [fullscreen]="true" tabindex="0">
-  <h1><b>404</b>: {{ '404.title' | transloco }}</h1>
-  <p>{{ '404.doesNotExist' | transloco }}</p>
-  <p>{{ '404.errorLogged' | transloco }}</p>
+<ion-content [fullscreen]="true" id="main-content" class="not-found">
+  <div class="not-found-card">
+    <div class="not-found-code" aria-hidden="true">404</div>
+    <h1>{{ '404.title' | transloco }}</h1>
+    <p>{{ '404.doesNotExist' | transloco }}</p>
+    <p class="not-found-hint">{{ '404.errorLogged' | transloco }}</p>
 
-  <ion-button color="primary" routerLink="/translate">
-    {{ '404.goHome' | transloco }}
-  </ion-button>
+    <ion-button color="primary" routerLink="/" shape="round">
+      <ion-icon slot="start" name="home-outline" aria-hidden="true" />
+      {{ '404.goHome' | transloco }}
+    </ion-button>
+  </div>
 </ion-content>

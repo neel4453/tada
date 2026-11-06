@@ -17,7 +17,7 @@ Each node represents a different module or function in the pipeline, with a link
 ```mermaid
 flowchart TD
   A0[Spoken Language Audio] --> A1(Spoken Language Text)
-  A1[Spoken Language Text] --> B[<a target='_blank' href='https://github.com/sign/translate/issues/10'>Language Identification</a>]
+  A1[Spoken Language Text] --> B[<a target='_blank' href='https://github.com/neel4453/tada/issues/10'>Language Identification</a>]
   A1 --> C(Normalized Text)
   B --> C
   C & B --> Q(<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter'>Sentence Splitter</a>)
@@ -26,7 +26,7 @@ flowchart TD
   M -.-> E
   D --> E(<a target='_blank' href='https://github.com/sign-language-processing/signwriting-animation'>Pose Sequence</a>)
   D -.-> I(<a target='_blank' href='https://github.com/sign-language-processing/signwriting-illustration'>Illustration</a>)
-  N --> H(<a target='_blank' href='https://github.com/sign/translate/issues/68'>3D Avatar</a>)
+  N --> H(<a target='_blank' href='https://github.com/neel4453/tada/issues/68'>3D Avatar</a>)
   N --> G(<a target='_blank' href='https://github.com/sign-language-processing/pose'>Skeleton Viewer</a>)
   N --> F(<a target='_blank' href='https://github.com/sign-language-processing/pose-to-video' title='Help wanted!'>Human GAN</a>)
   H & G & F --> J(Video)
@@ -111,9 +111,9 @@ Here is an example where a minor, inconsequential, and possibly even **wrong** m
 
 | Text                                                                         | Machine Translation                                                                | Dictionary Translation                          |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [Zürich](https://rylo.com/sign/translate/?spl=de&sil=sgg&text=Z%C3%BCrich)   | ![SignWriting for Zurich in Swiss-German Sign Language](assets/zurich/Zürich.png)  | The sign for Zurich (correct)                   |
-| [Zurich](https://rylo.com/sign/translate/?spl=de&sil=sgg&text=Zurich)        | ![SignWriting for Zurich in Swiss-German Sign Language](assets/zurich/Zurich.png)  | Spelling the city name without umlaut (strange) |
-| [Züerich](https://rylo.com/sign/translate/?spl=de&sil=sgg&text=Z%C3%BCerich) | ![SignWriting for Zurich in Swiss-German Sign Language](assets/zurich/Züerich.png) | Spelling the city name (strange)                |
+| [Zürich](https://neel4453.github.io/tnt/?spl=de&sil=sgg&text=Z%C3%BCrich)   | ![SignWriting for Zurich in Swiss-German Sign Language](assets/zurich/Zürich.png)  | The sign for Zurich (correct)                   |
+| [Zurich](https://neel4453.github.io/tnt/?spl=de&sil=sgg&text=Zurich)        | ![SignWriting for Zurich in Swiss-German Sign Language](assets/zurich/Zurich.png)  | Spelling the city name without umlaut (strange) |
+| [Züerich](https://neel4453.github.io/tnt/?spl=de&sil=sgg&text=Z%C3%BCerich) | ![SignWriting for Zurich in Swiss-German Sign Language](assets/zurich/Züerich.png) | Spelling the city name (strange)                |
 
 ##### Adaptivity to minor important changes
 
@@ -122,9 +122,9 @@ Changing to question mark, the face correctly become questioning (even though th
 
 | Text                                                                                  | Machine Translation                                                                               | Dictionary Translation                                |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [Hello world.](https://rylo.com/sign/translate/?spl=en&sil=ase&text=Hello%20world.)   | ![SignWriting for "Hello World." in American Sign Language](assets/hello_world/period.png)        | The sign for "Hello" followed by the sign for "World" |
-| [Hello world!](https://rylo.com/sign/translate/?spl=en&sil=ase&text=Hello%20world!)   | ![SignWriting for "Hello World!" in American Sign Language](assets/hello_world/exclamation.png)   | The sign for "Hello" followed by the sign for "World" |
-| [Hello world?](https://rylo.com/sign/translate/?spl=en&sil=ase&text=Hello%20world%3F) | ![SignWriting for "Hello World?" in American Sign Language](assets/hello_world/question_mark.png) | The sign for "Hello" followed by the sign for "World" |
+| [Hello world.](https://neel4453.github.io/tnt/?spl=en&sil=ase&text=Hello%20world.)   | ![SignWriting for "Hello World." in American Sign Language](assets/hello_world/period.png)        | The sign for "Hello" followed by the sign for "World" |
+| [Hello world!](https://neel4453.github.io/tnt/?spl=en&sil=ase&text=Hello%20world!)   | ![SignWriting for "Hello World!" in American Sign Language](assets/hello_world/exclamation.png)   | The sign for "Hello" followed by the sign for "World" |
+| [Hello world?](https://neel4453.github.io/tnt/?spl=en&sil=ase&text=Hello%20world%3F) | ![SignWriting for "Hello World?" in American Sign Language](assets/hello_world/question_mark.png) | The sign for "Hello" followed by the sign for "World" |
 
 ## Signed to Spoken Language Translation
 
@@ -140,7 +140,7 @@ flowchart TD
   A2[Language Selector] --> E(<a target='_blank' href='https://github.com/sign-language-processing/signbank-plus'>Spoken Language Text</a>)
   D --> E
   E --> F(Spoken Language Audio)
-  E --> G(<a target='_blank' href='https://github.com/sign/translate/issues/19'>Share Translation</a>)
+  E --> G(<a target='_blank' href='https://github.com/neel4453/tada/issues/19'>Share Translation</a>)
   C -.-> H(Sign Image)
 
 

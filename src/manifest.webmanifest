@@ -1,6 +1,6 @@
 {
-  "name": "Rylo Translate",
-  "short_name": "Rylo Translate",
+  "name": "TNT",
+  "short_name": "TNT",
   "scope": "./",
   "start_url": "./",
   "display": "standalone",
@@ -86,6 +86,6 @@
       "url": "./?direction=spoken-to-signed"
     }
   ],
-  "description": "Effortless real-time sign language translation by Rylo",
+  "description": "Effortless real-time sign language translation by TNT",
   "screenshots": []
 }

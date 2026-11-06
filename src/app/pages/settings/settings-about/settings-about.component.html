@@ -5,7 +5,7 @@
       <span class="nav-title">{{ t('title') }}</span>
     </div>
   </ion-header>
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" id="main-content">
     <ion-list>
       @for (page of legalPages; track page) {
         <ion-item [routerLink]="['/legal', page]" queryParamsHandling="preserve">

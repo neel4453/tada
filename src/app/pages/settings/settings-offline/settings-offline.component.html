@@ -5,7 +5,7 @@
       <span class="nav-title">{{ t('title') }}</span>
     </div>
   </ion-header>
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" id="main-content">
     <ng-template #nodeTemplate let-node>
       @if (node.name) {
         <span class="node-label">{{ node.label }}</span>

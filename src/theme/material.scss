@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-$rylo-orange-palette: (
+$tnt-amber-palette: (
   50: #fff3e0,
   100: #ffe0b2,
   200: #ffcc80,
@@ -33,7 +33,7 @@ $rylo-orange-palette: (
   ),
 );
 
-$rylo-sky-palette: (
+$tnt-sky-palette: (
   50: #eef4f9,
   100: #d5e2ed,
   200: #bacfe0,
@@ -66,14 +66,14 @@ $rylo-sky-palette: (
   ),
 );
 
-$app-accent: mat.m2-define-palette($rylo-sky-palette);
+$app-accent: mat.m2-define-palette($tnt-sky-palette);
 $app-warn: mat.m2-define-palette(mat.$m2-red-palette);
 $app-typography: mat.m2-define-typography-config(
   $font-family: "'Inter Tight', sans-serif",
 );
 
 $app-color: (
-  primary: mat.m2-define-palette($rylo-orange-palette, $default: 500),
+  primary: mat.m2-define-palette($tnt-amber-palette, $default: 500),
   accent: $app-accent,
   warn: $app-warn,
 );
@@ -85,7 +85,7 @@ $app-theme: mat.m2-define-light-theme(
 $app-dark-theme: mat.m2-define-dark-theme(
   (
     color: (
-      primary: mat.m2-define-palette($rylo-orange-palette, $default: 400),
+      primary: mat.m2-define-palette($tnt-amber-palette, $default: 400),
       accent: $app-accent,
       warn: $app-warn,
     ),
