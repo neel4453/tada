@@ -108,14 +108,9 @@ export class TranslateState implements NgxsOnInit {
 
   initFromUrl({dispatch, patchState}: StateContext<TranslateStateModel>) {
     const urlParams = getUrlParams();
-    const urlSignedLanguage = urlParams.get('sil');
-    if (urlSignedLanguage) {
-      patchState({signedLanguage: urlSignedLanguage});
-    }
-    const urlSpokenLanguage = urlParams.get('spl');
-    if (urlSpokenLanguage) {
-      patchState({spokenLanguage: urlSpokenLanguage});
-    }
+    // The translator is dedicated to English and American Sign Language.
+    // Ignore language parameters from older shared links.
+    patchState({signedLanguage: 'ase', spokenLanguage: 'en'});
     const urlTextParam = urlParams.get('text');
     if (urlTextParam) {
       dispatch(new SetSpokenLanguageText(urlTextParam));

@@ -8,8 +8,25 @@
   }
 }
 
-app-language-selector {
+.language-label {
   width: calc(50% - 18px);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px 24px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.language-caption {
+  color: var(--ion-color-primary-accessible-text);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 599px) {
+  .language-label { padding: 12px 8px; font-size: 13px; }
 }
 
 #translation-direction {

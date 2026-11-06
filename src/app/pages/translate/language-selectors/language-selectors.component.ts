@@ -8,14 +8,12 @@ import {takeUntil, tap} from 'rxjs/operators';
 import {addIcons} from 'ionicons';
 import {arrowForward} from 'ionicons/icons';
 import {IonIcon} from '@ionic/angular/standalone';
-import {LanguageSelectorComponent} from '../language-selector/language-selector.component';
-import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-language-selectors',
   templateUrl: './language-selectors.component.html',
   styleUrls: ['./language-selectors.component.scss'],
-  imports: [LanguageSelectorComponent, AsyncPipe, IonIcon],
+  imports: [IonIcon],
 })
 export class LanguageSelectorsComponent extends BaseComponent implements OnInit {
   private store = inject(Store);
