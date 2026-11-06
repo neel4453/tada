@@ -8,6 +8,8 @@ describe('NavigatorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(NavigatorService);
+    // Ensure isSecureContext check doesn't interfere with other tests (Karma runs on http://localhost)
+    spyOn(service, 'isInsecureContext').and.returnValue(false);
   });
 
   it('should create', () => {
@@ -63,10 +65,18 @@ describe('NavigatorService', () => {
     expect(result).toEqual(mockMediaStream);
   });
 
-  it('should throw insecureContext when isSecureContext is false', async () => {
-    spyOnProperty(window as any, 'isSecureContext', 'get').and.returnValue(false);
-    spyOnProperty(window, 'location', 'get').and.returnValue({hostname: '192.168.208.1'} as any);
+  it('should throw insecureContext when on insecure LAN host', async () => {
+    (service.isInsecureContext as jasmine.Spy).and.returnValue(true);
+    const spy = spyOn(navigator.mediaDevices, 'getUserMedia');
 
     await expectAsync(service.getCamera({})).toBeRejectedWithError('insecureContext');
+    expect(service.isInsecureContext).toHaveBeenCalled();
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('isInsecureContext returns false on secure context', () => {
+    const fresh = new NavigatorService();
+    // In Karma (localhost, secure), it should be false
+    expect(fresh.isInsecureContext()).toBeFalse();
   });
 });

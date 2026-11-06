@@ -4,17 +4,20 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class NavigatorService {
+  // Separated for testability: tests can spy on this to force insecure-context path
+  // without needing to mock window.isSecureContext / window.location (non-configurable).
+  isInsecureContext(): boolean {
+    if (!('isSecureContext' in globalThis) || (globalThis as any).isSecureContext) {
+      return false;
+    }
+    const host = (globalThis as any).location?.hostname ?? '';
+    const isLoopback = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+    return !isLoopback;
+  }
+
   async getCamera(options: MediaTrackConstraints): Promise<MediaStream> {
-    // Camera API requires a secure context (HTTPS or localhost). When the app is
-    // accessed over plain HTTP via a LAN IP like http://192.168.x.x:4200 the
-    // browser will block getUserMedia with NotAllowedError. Detect this early
-    // so the UI can show a helpful message instead of a generic "not connected".
-    if ('isSecureContext' in globalThis && !globalThis.isSecureContext) {
-      const host = globalThis.location?.hostname ?? '';
-      const isLoopback = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
-      if (!isLoopback) {
-        throw new Error('insecureContext');
-      }
+    if (this.isInsecureContext()) {
+      throw new Error('insecureContext');
     }
 
     let camera: MediaStream;
