@@ -135,6 +135,19 @@ npm start
 
 Then open <http://localhost:4200/>.
 
+For a showcase on another device on the same Wi-Fi/LAN, the server already allows all hosts:
+
+```bash
+# plain HTTP — Spoken → Signed (typing) works; camera/mic will be blocked by the browser
+npm start
+# → open http://<your-LAN-IP>:4200  e.g. http://192.168.208.1:4200
+
+# HTTPS — if you need the camera (Signed → Spoken) on the LAN, generate a cert and run:
+# openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/CN=192.168.208.1"
+# npm run start:secure
+# → open https://<your-LAN-IP>:4200 and accept the self-signed certificate
+```
+
 ### Regenerating generated files
 
 Several files in the repository are generated from a single source of truth. Re-run these after changing the
@@ -246,6 +259,7 @@ media queries.
 | Blank page after a production build | The app is served from the `basePath` in `base-path.json`. Serve `dist/tnt/browser` under that path, or change `basePath` and re-run `npm run generate:base-path`. |
 | "Licence information is unavailable" on `/legal/licenses` | Run `npm run generate:licenses` to produce `src/assets/licenses.json`. |
 | Camera or microphone does nothing | Both require a secure context (`https://` or `localhost`) and an explicit permission grant. |
+| `http://192.168.x.x:4200` shows “Access denied” / “Blocked request” or camera says “permission denied” during a LAN showcase | The dev server now allows any host (`--allowed-hosts all`). Make sure you run with `npm start` (which binds `0.0.0.0:4200` and sets `allowedHosts: all`). Camera / mic over plain HTTP on a LAN IP is blocked by the browser — they only work on `localhost` or `https://`. For a sign-language demo on another device, either: (a) showcase **Spoken → Signed** (typing) which needs no camera and works over `http://192.168…:4200`, or (b) serve with HTTPS: generate a self-signed cert and run `npm run start:secure`, then open `https://192.168…:4200` and accept the cert. |
 | Photo-realistic renderer is slow | Switch the pose viewer to *Skeleton* in Settings → Appearance, or enable WebGPU in a supported browser. |
 | Translations show as raw keys | The active language file failed to load. Check the network tab for `assets/i18n/<lang>.json`. |
 | Analytics/reCAPTCHA appear inert | Expected: both ship disabled. Add your own `measurementId` / `recaptchaSiteKey`. |

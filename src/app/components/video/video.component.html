@@ -3,6 +3,9 @@
     <ng-container *transloco="let t; read: 'video'">
       @if (videoState.error) {
         <p>{{ t('errors.' + videoState.error) }}</p>
+        @if (videoState.error === 'insecureContext') {
+          <p class="video-error-hint">{{ t('errors.insecureContextHint') }}</p>
+        }
       } @else if (!poseState.isLoaded) {
         <p>{{ 'pose.loading' | transloco }}</p>
       }

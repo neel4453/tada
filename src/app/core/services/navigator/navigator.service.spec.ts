@@ -20,8 +20,21 @@ describe('NavigatorService', () => {
     await expectAsync(service.getCamera({})).toBeRejectedWithError('permissionDenied');
   });
 
+  it('should handle NotAllowedError as permission denied', async () => {
+    const err = new DOMException('Permission denied', 'NotAllowedError');
+    spyOn(navigator.mediaDevices, 'getUserMedia').and.rejectWith(err);
+
+    await expectAsync(service.getCamera({})).toBeRejectedWithError('permissionDenied');
+  });
+
+  it('should handle access denied message as permission denied', async () => {
+    spyOn(navigator.mediaDevices, 'getUserMedia').and.rejectWith(new Error('Access denied while showcase'));
+
+    await expectAsync(service.getCamera({})).toBeRejectedWithError('permissionDenied');
+  });
+
   it('should throw an error if the camera is not connected', async () => {
-    spyOn(navigator.mediaDevices, 'getUserMedia').and.returnValue(Promise.resolve(null));
+    spyOn(navigator.mediaDevices, 'getUserMedia').and.returnValue(Promise.resolve(null as any));
 
     await expectAsync(service.getCamera({})).toBeRejectedWithError('notConnected');
   });
@@ -41,12 +54,19 @@ describe('NavigatorService', () => {
     await expectAsync(service.getCamera({})).toBeRejectedWithError('notConnected');
   });
 
-  it('should return a MediaStream if the camera is connected', async () => {
+  it('should return a MediaStream if the camera is connected (duplicate check)', async () => {
     const mockMediaStream = new MediaStream();
     spyOn(navigator.mediaDevices, 'getUserMedia').and.returnValue(Promise.resolve(mockMediaStream));
 
     const result = await service.getCamera({});
     expect(result).toBeDefined();
     expect(result).toEqual(mockMediaStream);
+  });
+
+  it('should throw insecureContext when isSecureContext is false', async () => {
+    spyOnProperty(window as any, 'isSecureContext', 'get').and.returnValue(false);
+    spyOnProperty(window, 'location', 'get').and.returnValue({hostname: '192.168.208.1'} as any);
+
+    await expectAsync(service.getCamera({})).toBeRejectedWithError('insecureContext');
   });
 });

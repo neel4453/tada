@@ -126,7 +126,10 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
-            "buildTarget": "tnt:build"
+            "buildTarget": "tnt:build",
+            "host": "0.0.0.0",
+            "port": 4200,
+            "allowedHosts": ["all"]
           },
           "configurations": {
             "production": {

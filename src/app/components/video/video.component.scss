@@ -17,6 +17,14 @@ p {
   line-height: 48px;
 }
 
+.video-error-hint {
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 520px;
+  opacity: 0.9;
+  margin-top: 12px;
+}
+
 #video-container {
   height: 100%;
   overflow: hidden;
